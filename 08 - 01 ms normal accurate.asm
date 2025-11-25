@@ -1,0 +1,18 @@
+    LDI R16, (1<<5) ; R16 = 0010 0000
+    SBI DDRB, 5 ; DDRB = 0010 0000
+    LDI R17, 0
+BEGIN: LDI R20, 220 ;1 (the loaded number is 256 - (50 - 14) = 220)
+    OUT TCNT0, R20 ;1
+    LDI R20, 0x0 ;1
+    OUT TCCR0A, R20 ;1
+    LDI R20, 0x01 ;1
+    OUT TCCR0B, R20 ;1
+AGAIN: SBIS TIFR0, TOV0 ;N
+    RJMP AGAIN ;N
+    LDI R20, 0x0 ;1
+    OUT TCCR0B, R20 ;1
+    LDI R20, (1<<TOV0) ;1
+    OUT TIFR0, R20 ;1
+    EOR R17, R16 ;1
+    OUT PORTB, R17 ;1
+    RJMP BEGIN ;2
