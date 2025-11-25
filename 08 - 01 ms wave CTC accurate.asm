@@ -1,3 +1,7 @@
+; [CTC - Count Till the number Compared] Count until the counter reach the specific values
+; we copy numbner from OCF flag, we set the maximum value instead of the 
+
+
     LDI R16, (1<<5)
     SBI DDRB, 5
     LDI R17, 0
