@@ -1,0 +1,8 @@
+ 	SBI	DDRD,6
+	LDI	R20,191
+	OUT	OCR0A,R20		;OCR0A = 191
+	LDI	R20,(1<<COM0A1)|(1<<WGM00)	;R20=0x81 (Example 16-13)
+	OUT	TCCR0A,R20		;Phase c. PWM, non-inverted
+	LDI	R20,0x01
+	OUT	TCCR0B,R20		;no prescaler
+HERE:	RJMP	HERE
